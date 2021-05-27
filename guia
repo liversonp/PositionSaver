@@ -1,0 +1,72 @@
+location saver:
+
+salvar latitude/longitude do cell ok
+pegar quais satélites estão conectados
+quantas vezes salvar
+o intervalo de tempo
+plotar tudo no mapa
+calcular a média da variação da latitude e longitude
+
+
+
+
+
+
+
+
+
+
+
+
+-instalar o NVM -> selecionar a versão do node;
+https://phoenixnap.com/kb/update-node-js-version
+
+-instalar o expo;
+https://blog.codemagic.io/step-by-step-guide-to-kick-off-your-first-react-native-project/
+
+-instalar o banco de dados -> fireBase
+https://firebase.google.com/?hl=pt-br
+
+-linkar o firebase com o react native
+https://rnfirebase.io/
+
+-icone de localização
+https://fontawesome.com/v5.15/icons/map-marker-alt?style=solid
+
+-foi utilizado o mapa do expo
+https://docs.expo.io/versions/latest/sdk/map-view/
+
+-dar permissão pro acesso do expo no celular
+https://docs.expo.io/versions/latest/sdk/permissions/
+
+-adicionar a extensão da localização
+https://docs.expo.io/versions/latest/sdk/location/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-15.9160223, -48.0587961
+-15.9160223, -48.0587961
+-15.9166842, -48.0575176
