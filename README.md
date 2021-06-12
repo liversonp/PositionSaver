@@ -13,16 +13,16 @@ As tecnologias utilizadas no projeto são:
 - Node
 - Expo
 
-Informações sobre a instalação das tecnologias estão disponibilizadas no arquivo de [instalação]('./docs/instalacao/instalacao.md')
+Informações sobre a instalação das tecnologias estão disponibilizadas no arquivo de [instalação](https://github.com/liversonp/PositionSaver/blob/main/docs/Instalacao/instalacao.md)
 
 ## Contribuição
 
 Informações que podem ajudar em relação à contribuição:
 
-- [commit]('./docs/templates/commit.md')
-- [issue]('./.github/ISSUE_TEMPLATE/issue-de-tarefas.md')
-- [issue de duvida](./.github/ISSUE_TEMPLATE/bug_report.md)
-- [pull request]('./docs/templates/pull_request.md')
+- [commit](https://github.com/liversonp/PositionSaver/blob/main/docs/templates/commit.md)
+- [issue](https://github.com/liversonp/PositionSaver/blob/main/.github/ISSUE_TEMPLATE/issue-de-tarefas.md)
+- [issue de duvida](https://github.com/liversonp/PositionSaver/blob/main/.github/ISSUE_TEMPLATE/bug_report.md)
+- [pull request](https://github.com/liversonp/PositionSaver/blob/main/docs/templates/pull_request.md)
 
 ## Comandos
 
