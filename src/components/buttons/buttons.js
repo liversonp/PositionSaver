@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { View, Button, Alert } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { styles } from './styleButton'
 
