@@ -1,4 +1,4 @@
-# Política de Commits
+# Política de Pull Request
 ## Histórico de Versões
 | Data       | Versão | Descrição        | Autor(es)      |
 | ---------- | ------ | ---------------- | -------------- |
