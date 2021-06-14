@@ -2,14 +2,11 @@ import * as React from 'react';
 import MapView from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions, Button, Alert, SafeAreaView } from 'react-native';
 import * as Location from 'expo-location';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import  Buttons  from '../../components/buttons/buttons'
 import { styles } from './styleMap'
 
 
-export default function Map() {
+export default function Map({navigation}) {
   const [location, setLocation] = React.useState(null);
 
   React.useEffect(() => {
@@ -27,21 +24,34 @@ export default function Map() {
         latitudeDelta: 0.0030,
         longitudeDelta: 0.0030,
       }
-      console.log(JSON.stringify(initLocation.coords.latitude))
-      console.log(JSON.stringify(initLocation.coords.longitude))
       setLocation(location);
-      console.log(JSON.stringify(location));
+      
+      //console.log(JSON.stringify(initLocation.coords.latitude))
+      //console.log(JSON.stringify(initLocation.coords.longitude))
+      //console.log(JSON.stringify(location));
     })();
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Buttons/>
+    <View style={styles.container}>
+      <Button
+        style={styles.button}
+        title="Mapa"
+        onPress={() => navigation.reset({
+          index: 0,
+          routes: [{name: "Map"}]
+        })}
+      />
+      <Button
+        style={styles.button}
+        title="Definições"
+        onPress={() => navigation.navigate("Definitions")}
+      />
       <MapView
         style={styles.map}
         initialRegion={location}
         region={location}
       />
-    </SafeAreaView >
+    </View >
   );
 }
