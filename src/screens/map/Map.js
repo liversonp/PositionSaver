@@ -25,7 +25,7 @@ export default function Map({navigation}) {
         longitudeDelta: 0.0030,
       }
       setLocation(location);
-      
+
       //console.log(JSON.stringify(initLocation.coords.latitude))
       //console.log(JSON.stringify(initLocation.coords.longitude))
       //console.log(JSON.stringify(location));
@@ -34,8 +34,9 @@ export default function Map({navigation}) {
 
   return (
     <View style={styles.container}>
+      <View style={styles.button}>
       <Button
-        style={styles.button}
+        
         title="Mapa"
         onPress={() => navigation.reset({
           index: 0,
@@ -47,6 +48,7 @@ export default function Map({navigation}) {
         title="Definições"
         onPress={() => navigation.navigate("Definitions")}
       />
+      </View>
       <MapView
         style={styles.map}
         initialRegion={location}
