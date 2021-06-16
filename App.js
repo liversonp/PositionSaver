@@ -11,8 +11,8 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Map" component={Map} />
-      <Stack.Screen name="Definitions" component={Definitions} />
+      <Stack.Screen name="Mapa" component={Map} />
+      <Stack.Screen name="Definições" component={Definitions} />
     </Stack.Navigator>
   );
 }

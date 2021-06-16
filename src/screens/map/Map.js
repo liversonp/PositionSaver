@@ -40,13 +40,13 @@ export default function Map({navigation}) {
         title="Mapa"
         onPress={() => navigation.reset({
           index: 0,
-          routes: [{name: "Map"}]
+          routes: [{name: "Mapa"}]
         })}
       />
       <Button
         style={styles.button}
         title="Definições"
-        onPress={() => navigation.navigate("Definitions")}
+        onPress={() => navigation.navigate("Definições")}
       />
       </View>
       <MapView
