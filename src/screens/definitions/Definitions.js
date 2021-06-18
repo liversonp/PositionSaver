@@ -4,8 +4,8 @@ import { StyleSheet, Text, View, Dimensions, Button, Alert, SafeAreaView } from 
 import { Input } from 'react-native-elements';
 import * as Location from 'expo-location';
 
-export default function Definitions() {
-  const [repeticoes,setRepeticoes] = React.useState(null);
+export default function Definitions({navigation, route}) {
+  const [repeticoes, setRepeticoes] = React.useState(null);
   const [tempo,setTempo] = React.useState(null);
 
   const [errorRep,setErrorRep] = React.useState(null);
@@ -30,7 +30,11 @@ export default function Definitions() {
   
   const salvar = () => {
     if(validar()){
-      Alert.alert('Salvou');
+      navigation.navigate({
+        name: "Mapa",
+        params: {repeticoes, tempo},
+        merge: true,
+      })
     }
   }
 

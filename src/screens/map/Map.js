@@ -6,8 +6,9 @@ import * as Location from 'expo-location';
 import { styles } from './styleMap'
 
 
-export default function Map({navigation}) {
+export default function Map({navigation, route}) {
   const [location, setLocation] = React.useState(null);
+  const [rep, setRep] = React.useState(null);
 
   React.useEffect(() => {
     (async () => {
@@ -25,12 +26,19 @@ export default function Map({navigation}) {
         longitudeDelta: 0.0030,
       }
       setLocation(location);
-
       //console.log(JSON.stringify(initLocation.coords.latitude))
       //console.log(JSON.stringify(initLocation.coords.longitude))
       //console.log(JSON.stringify(location));
+      
     })();
   }, []);
+
+  React.useEffect(() => {
+    if (route.params?.repeticoes && route.params?.tempo) {
+      console.log(route.params?.repeticoes);
+      console.log(route.params?.tempo);
+    }
+  }, [route.params?.repeticoes]);
 
   return (
     <View style={styles.container}>
