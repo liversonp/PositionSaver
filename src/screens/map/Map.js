@@ -2,15 +2,13 @@ import * as React from 'react';
 import MapView from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions, Button, Alert, SafeAreaView } from 'react-native';
 import * as Location from 'expo-location';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import  Buttons  from '../../components/buttons/buttons'
 import { styles } from './styleMap'
 
 
-export default function Map() {
+export default function Map({navigation, route}) {
   const [location, setLocation] = React.useState(null);
+  const [rep, setRep] = React.useState(null);
 
   React.useEffect(() => {
     (async () => {
@@ -27,21 +25,43 @@ export default function Map() {
         latitudeDelta: 0.0030,
         longitudeDelta: 0.0030,
       }
-      console.log(JSON.stringify(initLocation.coords.latitude))
-      console.log(JSON.stringify(initLocation.coords.longitude))
       setLocation(location);
-      console.log(JSON.stringify(location));
+      //console.log(JSON.stringify(initLocation.coords.latitude))
+      //console.log(JSON.stringify(initLocation.coords.longitude))
+      //console.log(JSON.stringify(location));
+      
     })();
   }, []);
 
+  React.useEffect(() => {
+    if (route.params?.repeticoes && route.params?.tempo) {
+      console.log(route.params?.repeticoes);
+      console.log(route.params?.tempo);
+    }
+  }, [route.params?.repeticoes]);
+
   return (
-    <SafeAreaView style={styles.container}>
-      <Buttons/>
+    <View style={styles.container}>
+      <View style={styles.button}>
+      <Button
+        
+        title="Mapa"
+        onPress={() => navigation.reset({
+          index: 0,
+          routes: [{name: "Mapa"}]
+        })}
+      />
+      <Button
+        style={styles.button}
+        title="Definições"
+        onPress={() => navigation.navigate("Definições")}
+      />
+      </View>
       <MapView
         style={styles.map}
         initialRegion={location}
         region={location}
       />
-    </SafeAreaView >
+    </View >
   );
 }
