@@ -6,9 +6,9 @@
 
 ## Mudanças Realizadas
 
-- [] Bug Resolvidos
-- [] Nova funcionalidade
-- [] Atualização da Documentação
+-  Bug Resolvidos
+-  Nova funcionalidade
+-  Atualização da Documentação
 
 ## Informações  das Mudanças
 
