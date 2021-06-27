@@ -8,7 +8,6 @@ import { styles } from './styleMap'
 
 export default function Map({navigation, route}) {
   const [location, setLocation] = React.useState(null);
-  const [rep, setRep] = React.useState(null);
 
   React.useEffect(() => {
     (async () => {
@@ -34,11 +33,10 @@ export default function Map({navigation, route}) {
   }, []);
 
   React.useEffect(() => {
-    if (route.params?.repeticoes && route.params?.tempo) {
-      console.log(route.params?.repeticoes);
+    if (route.params?.tempo) {
       console.log(route.params?.tempo);
     }
-  }, [route.params?.repeticoes]);
+  }, [route.params?.tempo]);
 
   return (
     <View style={styles.container}>
