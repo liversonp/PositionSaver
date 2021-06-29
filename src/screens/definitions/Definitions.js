@@ -9,11 +9,15 @@ export default function Definitions({navigation, route}) {
   const [tempo,setTempo] = React.useState(null);
   const [errorTempo,setErrorTempo] = React.useState(null);
 
-  const [escolha, setEscolha] = React.useState(null);
+  const [escolha, setEscolha] = React.useState('segundos');
 
   const validar = () => {
     let error = false
     setErrorTempo(null)
+
+    console.log(escolha)
+
+
     if(escolha != 'segundos' && escolha!= 'minutos'){
       setErrorTempo("preencha os campo de forma correta")
       error = true
@@ -56,10 +60,10 @@ export default function Definitions({navigation, route}) {
         style={{height: 50, width: 200}}
         onValueChange={(itemValue) => setEscolha(itemValue)}
         >
-          <Picker.item label="Selecione aqui" value="Selecione aqui"/>
-          <Picker.item label="Segundos" value="segundos"/>
-          <Picker.item label="Minutos" value="minutos"/>
+          <Picker.Item label="Segundos" value="segundos"/>
+          <Picker.Item label="Minutos" value="minutos"/>
       </Picker>
+
         <Input
         placeholder='Intervalo de tempo desejado'
         onChangeText={value => setTempo(value)}
