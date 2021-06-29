@@ -34,7 +34,18 @@ export default function Map({navigation, route}) {
 
   React.useEffect(() => {
     if (route.params?.tempo) {
+      let now = new Date
+      nowDate = now.getDate ();
+      nowMonth = now.getMonth();
+      nowYear = now.getFullYear ();
+
+      let nowHour = now.getHours();
+      let nowMin =  now.getMinutes();
+      let nowSeg = now.getSeconds();
+      let nowMseg = now.getMilliseconds();
       console.log(route.params?.tempo);
+      console.log(nowHour + ":" + nowMin + ":" + nowSeg + ":" + nowMseg);
+      console.log(nowDate + "/" + nowMonth + "/" + nowYear);
     }
   }, [route.params?.tempo]);
 
