@@ -9,16 +9,13 @@ export default function Definitions({navigation, route}) {
   const [tempo,setTempo] = React.useState(null);
   const [errorTempo,setErrorTempo] = React.useState(null);
 
-  const [escolha, setEscolha] = React.useState('segundos');
+  const [medida, setMedida] = React.useState('segundos');
 
   const validar = () => {
     let error = false
     setErrorTempo(null)
-
-    console.log(escolha)
-
-
-    if(escolha != 'segundos' && escolha!= 'minutos'){
+    
+    if(medida != 'segundos' && medida!= 'minutos'){
       setErrorTempo("preencha os campo de forma correta")
       error = true
     }
@@ -27,7 +24,7 @@ export default function Definitions({navigation, route}) {
       error = true
     }
 
-    if(escolha == 'segundos'){
+    if(medida == 'segundos'){
       if(tempo > 59 || tempo < 1){
         setErrorTempo("preencha os campo de forma correta")
         error = true
@@ -47,7 +44,7 @@ export default function Definitions({navigation, route}) {
     if(validar()){
       navigation.navigate({
         name: "Mapa",
-        params: {tempo},
+        params: {tempo, medida},
         merge: true,
       })
     }
@@ -55,10 +52,11 @@ export default function Definitions({navigation, route}) {
 
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        
       <Picker
-        selectedValue={escolha}
+        selectedValue={medida}
         style={{height: 50, width: 200}}
-        onValueChange={(itemValue) => setEscolha(itemValue)}
+        onValueChange={(itemValue) => setMedida(itemValue)}
         >
           <Picker.Item label="Segundos" value="segundos"/>
           <Picker.Item label="Minutos" value="minutos"/>
