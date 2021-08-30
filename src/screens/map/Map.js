@@ -4,18 +4,51 @@ import { StyleSheet, Text, View, Dimensions, Button, Alert, SafeAreaView } from 
 import * as Location from 'expo-location';
 
 import { styles } from './styleMap'
+import { round } from 'react-native-reanimated';
 
 
 export default function Map({ navigation, route }) {
   const [location, setLocation] = React.useState(null);
-  const [lat, setLat] = React.useState(100);
-  const [long, setLong] = React.useState(100);
+  const [watcher, setWatcher] = React.useState(null);
+  const [isLooping, setIsLooping] = React.useState(true);
+  var dados = [];
+  var intervalo = 1000;
+  
+  const paraRepeticao = async () => {
+    await watcher.remove();
+    console.log("parou!")
+    setIsLooping(false);
+  }
 
-  var myInterval;
-  let a = 1;
-
-  const paraRepeticao = () => {
-    clearInterval(myInterval);
+  const iniciaRepeticao = async () => {
+    let curr_location = {}
+    let timeStamp = -1;
+    let currTime;
+    let new_watcher = await Location.watchPositionAsync({ 
+      accuracy:Location.Accuracy.Highest,
+      timeInterval: intervalo,
+      distanceInterval: 0
+    }, function(loc) {
+        curr_location = {
+          latitude: loc.coords.latitude,
+          longitude: loc.coords.longitude,
+          latitudeDelta: 0.0030,
+          longitudeDelta: 0.0030
+        }
+        setLocation(curr_location);
+        if(timeStamp == -1){
+          timeStamp = loc.timestamp;
+        }
+        currTime = loc.timestamp;
+        currTime = (currTime-timeStamp)/1000;
+        //dados.push(curr_location, intervalo);
+        console.log("atualizou!");
+        console.log(currTime);
+      });
+    setWatcher(new_watcher);
+    
+    console.log(intervalo);
+    setIsLooping(true);
   }
 
   React.useEffect(() => {
@@ -26,39 +59,24 @@ export default function Map({ navigation, route }) {
         return;
       }
 
-      let initLocation = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Highest });
-      setLat(initLocation.coords.latitude);
-      setLong(initLocation.coords.longitude);
-
-      let location = {
-        latitude: initLocation.coords.latitude,
-        longitude: initLocation.coords.longitude,
-        latitudeDelta: 0.0030,
-        longitudeDelta: 0.0030,
-      }
-      setLocation(location);
-      console.log(JSON.stringify(initLocation.coords.latitude))
-      console.log(JSON.stringify(initLocation.coords.longitude))
-      console.log(JSON.stringify(location));
+      iniciaRepeticao();
 
     })();
   }, []);
 
   React.useEffect(() => {
     if (route.params?.tempo && route.params?.medida) {
-      let intervalo = 1000;
-      console.log(route.params?.tempo);
+      let novo_intervalo = 1000;
       if(route.params?.medida == 'segundos'){
-        intervalo = intervalo * route.params?.tempo;
+        novo_intervalo *= route.params?.tempo;
       }
       else{
-        intervalo = intervalo * route.params?.tempo * 60;
+        novo_intervalo *= route.params?.tempo * 60;
       }
-      myInterval = setInterval(function () {
-        a = a+1;
-        console.log(a);
-      }, intervalo);
-
+      intervalo = novo_intervalo;
+        
+      paraRepeticao();
+      iniciaRepeticao();
     }
   }, [route.params?.tempo, route.params?.medida]);
 
@@ -83,8 +101,8 @@ export default function Map({ navigation, route }) {
       <View style={styles.pararwrappler}>
         <Button
           style={styles.button}
-          title="Parar"
-          onPress={() => paraRepeticao()}
+          title = {(isLooping ? "Parar" : "Iniciar")}
+          onPress= {isLooping ? () => paraRepeticao() : () => iniciaRepeticao()}
         />
       </View>
       <MapView
@@ -92,15 +110,17 @@ export default function Map({ navigation, route }) {
         initialRegion={location}
         region={location}
       >
-        <Marker
-          coordinate={{
-            latitude: lat,
-            longitude: long,
-          }}
-          image={require('../../../assets/map_marker.svg')}
-          title='You'
-          identifier='User'
-        ></Marker>
+        {(location != null && location.latitude != null && location.longitude != null) ?
+          <Marker
+            coordinate={{
+              latitude: location.latitude,
+              longitude: location.longitude,
+            }}
+            image={require('../../../assets/map_marker.svg')}
+            title='You'
+            identifier='User'
+          ></Marker>
+        : null }
         </MapView>
     </View >
   );
