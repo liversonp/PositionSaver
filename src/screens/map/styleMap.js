@@ -17,4 +17,10 @@ export const styles = StyleSheet.create({
       display: 'flex',
       flexDirection: 'row',
     },
+
+    pararwrappler: {
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'space-around'
+    }
   });
