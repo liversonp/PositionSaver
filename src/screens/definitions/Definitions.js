@@ -6,11 +6,13 @@ import * as Location from 'expo-location';
 import {Picker} from '@react-native-picker/picker'
 
 export default function Definitions({navigation, route}) {
+  //Declaração das variáveis de tempo, mensagem de erro e variável de medida de tempo
   const [tempo,setTempo] = React.useState(null);
   const [errorTempo,setErrorTempo] = React.useState(null);
-
   const [medida, setMedida] = React.useState('segundos');
 
+  //Função com o propósito de validar as informações de tempo que foram passadas pelo usuário
+  //Caso as informações forem inválidas, o usuário não conseguirá mudar o intervalo de tempo
   const validar = () => {
     let error = false
     setErrorTempo(null)
@@ -39,7 +41,7 @@ export default function Definitions({navigation, route}) {
     return !error
   }
   
-  
+  //Função para retornar as informações para a tela de mapa, enviando os parametros de tempo e medida
   const salvar = () => {
     if(validar()){
       navigation.navigate({
@@ -52,7 +54,7 @@ export default function Definitions({navigation, route}) {
 
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        
+      {/*Informações mostradas na tela em relação a medida de tempo e ao tempo desejados*/}  
       <Picker
         selectedValue={medida}
         style={{height: 50, width: 200}}
